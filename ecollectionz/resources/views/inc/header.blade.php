@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{{asset('build/css/intlTelInput.css') }}">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
   <style>
     /* Made with love by Mutiullah Samim*/
@@ -106,8 +107,6 @@ margin-left: 4px;
   position: absolute;
 }
 
- }  
-  } 
   </style>
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
 

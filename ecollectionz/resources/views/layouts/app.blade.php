@@ -27,7 +27,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
       body {
-       
+        
       }
 
       h1, h2, h3 {
@@ -110,9 +110,25 @@
         -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
         transition: all 0.4s ease 0s;
       }
-      
 
-      
+      .card {
+          border-radius: 22px !important;
+      }
+        .card-header {
+            background-color: #012f5c !important;
+            border-radius: 20px 20px 0 0  !important;
+        }
+
+        .card-title {
+            color: white!important;
+            font-size: 1.5em !important;
+        }
+
+        h1{
+            font-size: 2em !important;
+            color: #012F5C ;
+        }
+
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -152,7 +168,7 @@
               </div>
           </li>
       </ul>
-    <a href="{{ route('profile') }}"   class="btn btn-warning " >
+    <a href="{{ route('profile') }}"   class="btn btn-warning "  style="color:#012F5C; font-weight: bold;">
     
                     Profile
                   </a>
@@ -163,10 +179,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="./admin" class="brand-link">
+    <a href="./admin" class="brand-link" style="text-align: center;">
       <img src="{{ asset('img/logo.png') }}" alt="Logo" class="brand-image  elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">EZ</span>
+           style="box-shadow: 0 0 0px rgba(0,0,0,.19), 0 0px 0px rgba(0,0,0,.23); width: 70%;">
+      <span class="brand-text font-weight-light">&nbsp;</span>
     </a>
 
     <!-- Sidebar -->
@@ -177,8 +193,9 @@
         <?php 
           $photo = Auth()->user()->photo;
         ?>
-          <img src="{{asset('images/') }}<?php echo '/'.$photo; ?>" class="img-circle elevation-2" alt="User Image">
+          <img src="{{asset('images/') }}<?php echo '/'.$photo; ?>" class="img-circle " alt="User Image">
         </div>
+          <br> <br>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
@@ -218,8 +235,8 @@
             </a>
           </li>
         <a href="{{ route('logout') }}"  onclick="event.preventDefault();    
-        document.getElementById('logout-form').submit();" class="btn btn-danger " style="color:white;">
-          <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;&nbsp;Logout
+            document.getElementById('logout-form').submit();" class="btn btn-warning " style="color:#012F5C;font-weight: bold;">
+          &nbsp;Logout
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}

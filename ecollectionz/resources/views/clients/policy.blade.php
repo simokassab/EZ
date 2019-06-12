@@ -7,17 +7,17 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">New Policy</h1>
+                        <h1 >New Policies</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Policys</li>
+                            <li class="breadcrumb-item active">Policy</li>
                         </ol>
 
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-                <hr style="border-bottom: 1px solid #012F5C;">
+                <hr style="border-bottom: 3px solid #c2c7d0;">
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
@@ -25,9 +25,9 @@
             <section class="content">
                 <div class="container-fluid">
                     @include('inc.messages')
-                    <div class="card card-info" style="border: 2px solid #012F5C;">
+                    <div class="card card-info" style="border: 3px solid #012F5C;">
                         <div class="card-header">
-                            <h3 class="card-title" style="color: white">Add New Policy</h3>
+                            <h2 class="card-title" style="color: white">Add New Policy</h2>
                         </div>
                         {!! Form::open(['action'=>'HomeController@store', 'method'=>'POST', 'enctype' => 'multipart/form-data']) !!}
                         <div class="card-body">
@@ -35,7 +35,7 @@
 
                                 <div class="col col-sm-12">
                                     <div class="form-group">
-                                        <label class="control-label"for="corporates">Company</label>
+                                        <label class="control-label"for="corporates">COMPANY</label>
                                         <select class="form-control select2" style="width: 100%;" name='corporates' id ='corporates' required>
                                             @foreach ($corp as $cor)
                                                     <option value="{{$cor->id}}" >{{$cor->name}}</option>
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="col col-sm-12">
                                     <center>
-                                        <button type="submit" class="btn btn-success"><i class="fas fa-cart-arrow-down "></i>&nbsp;&nbsp; Request Policy</button>
+                                        <button type="submit" class="btn btn-warning" style="color: #012f5c; background-color:#e0a800; "><b>Request Policy</b></button>
                                     </center>
                                 </div>
                             </div>

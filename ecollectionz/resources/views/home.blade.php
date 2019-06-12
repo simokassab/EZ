@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Companies you have premiums with :</h1>
+            <h1 class="">Companies you have premiums with :</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -17,7 +17,7 @@
            
           </div><!-- /.col -->
         </div><!-- /.row -->
-        <hr style="border-bottom: 1px solid #012F5C;">
+        <hr style="border-bottom: 3px solid #c2c7d0;">
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
@@ -27,13 +27,13 @@
       <div class="container-fluid">
         <div class="card card-info" style="border: 2px solid #012F5C;">
             <div class="card-header">
-              <h3 class="card-title">My corporates</h3>
+              <h2 class="card-title">My corporates</h2>
             </div>
           <div class="card-body">
             <div class="row">
               @if($corp->isEmpty())
                 <div class="col col-sm-12">
-                  <h2 style="text-align: center; color: #DC3545;">You don't have any policy yet</h2>
+                  <h1 style="text-align: center; color: #c2c7d0;">You don't have any policy yet</h1>
                   <hr>
                 </div>
 

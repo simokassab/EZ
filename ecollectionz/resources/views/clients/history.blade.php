@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Invoice History</h1>
+                        <h1 >Invoice History</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -17,7 +17,7 @@
 
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-                <hr style="border-bottom: 1px solid #012F5C;">
+                <hr style="border-bottom: 3px solid #c2c7d0 ;">
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
@@ -27,7 +27,7 @@
                     @include('inc.messages')
                     <div class="card card-danger" style="border: 2px solid #012F5C;">
                         <div class="card-header">
-                            <h3 class="card-title" style="color: white">My Invoices</h3>
+                            <h2 class="card-title" >My Invoices</h2>
                         </div>
                         <div class="card-body">
                             <div class="row">
