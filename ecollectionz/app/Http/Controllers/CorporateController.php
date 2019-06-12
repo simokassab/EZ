@@ -74,20 +74,42 @@ class CorporateController extends Controller
         return view ('corporates.clients')->with('clients', $clients)->with('gpa', $gpa);
     }
 
-    public function getPoliciesByClient($phone){
+    public function getBrokers(){
+        $id = Auth::user()->id;
+       // $gpa = DB::table('corporates')->where('id', $id)->get();
+        $brokers = DB::table('brokers')
+            ->where('CP_ID_FK', $id)->get();
+        return view ('corporates.brokers')->with('brokers', $brokers);
+    }
+
+    public function getPoliciesByClient($idd, $type){
         DB::enableQueryLog();
         $id = Auth::user()->id;
+        if($type=="BK"){
+            $policies = DB::select('
+            SELECT corporates.name as CP_NAME,
+            B.client_no, B.id, B.client_name, B.phone,
+            B.draft_no, B.due_date, B.status, B.currency, B.amount, B.remarks as RK, B.created_at
+            FROM ( select client_name, phone, draft_no, status, max(created_at) as created_at
+            from policies group by client_name, phone, draft_no ) A
+            INNER JOIN policies B USING (client_name, phone, draft_no,created_at)
+            INNER JOIN corporates ON B.cust_id =corporates.id
+            where B.cust_id='.$id.' and B.broker_id= "'.$idd.'"');
+        }
+        else {
         $policies = DB::select('
-        SELECT corporates.name as CP_NAME,
-        B.client_no, B.id, B.client_name, B.phone,
-        B.draft_no, B.due_date, B.status, B.currency, B.amount, B.remarks as RK, B.created_at
-        FROM ( select client_name, phone, draft_no, status, max(created_at) as created_at
-        from policies group by client_name, phone, draft_no ) A
-        INNER JOIN policies B USING (client_name, phone, draft_no,created_at)
-        INNER JOIN corporates ON B.cust_id =corporates.id
-        where B.cust_id='.$id.' and B.phone='.$phone);
-        //dd(DB::getQueryLog());
-        return view('corporates.policies')->with('policies', $policies);
+            SELECT corporates.name as CP_NAME,
+            B.client_no, B.id, B.client_name, B.phone,
+            B.draft_no, B.due_date, B.status, B.currency, B.amount, B.remarks as RK, B.created_at
+            FROM ( select client_name, phone, draft_no, status, max(created_at) as created_at
+            from policies group by client_name, phone, draft_no ) A
+            INNER JOIN policies B USING (client_name, phone, draft_no,created_at)
+            INNER JOIN corporates ON B.cust_id =corporates.id
+            where B.cust_id='.$id.' and B.phone='.$idd);
+        }
+
+      //  dd(DB::getQueryLog());
+        return view('corporates.policies')->with('policies', $policies)->with('type', $type);
 
     }
 

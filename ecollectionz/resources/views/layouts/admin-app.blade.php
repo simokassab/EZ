@@ -624,7 +624,12 @@ $(document).ready( function() {
         "pagingType": "full_numbers"
     } );
 
-    
+    $('#corporates_table').DataTable( {
+        responsive: true,
+        "pagingType": "full_numbers"
+    } );
+
+
   $('#dates').daterangepicker({
     locale: {
       format: 'DD-MM-YYYY'

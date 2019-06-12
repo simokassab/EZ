@@ -63,7 +63,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/saveit', 'Admins\AdvController@saveIt')->name('admin.adv.update');
     Route::get('/adv', 'Admins\AdvController@index')->name('admin.adv');
     Route::get('/advanced', 'Admins\ReportsController@advanced')->name('admin.advanced');
-    Route::get('/{corp}/{status}/{datetype}/{dates}/getsearch', 'Admins\ReportsController@search')->name('admin.search');
+    Route::post('/getsearch', 'Admins\ReportsController@search')->name('admin.search');
 
     // CORPORATES ADMIN
     Route::resource('/corporate', 'Admins\AdminCpController', ['only' => ['index', 'show', 'store', 'edit']]);
@@ -179,8 +179,9 @@ Route::prefix('corporate')->group(function() {
     Route::get('/profile', 'CorporateController@getProfile')->name('corporates.profile');
     Route::post('/updateprofile', 'CorporateController@updateProfile')->name('corporates.profile.update');
     Route::get('/clients', 'CorporateController@getClients')->name('corporates.clients');
+    Route::get('/brokers', 'CorporateController@getBrokers')->name('corporates.brokers');
     Route::post('/logout', 'Auth\CorporateLoginController@logout')->name('corporate.logout');
-    Route::get('/{id}/policies', ['as' => 'corporate.policies', 'uses' => 'CorporateController@getPoliciesByClient']);
+    Route::get('/{id}/{type}/policies', ['as' => 'corporate.policies', 'uses' => 'CorporateController@getPoliciesByClient']);
     Route::get('/allpolicies', ['as' => 'corporate.allpolicies', 'uses' => 'CorporateController@getAllPolicies']);
     Route::get('/getdatatable',['as' => 'corp.getdatatable', 'uses' => 'CorporateController@getDatatable']);
     Route::get('/{id}/history', ['as' => 'corp.history', 'uses' => 'CorporateController@getHistory']);

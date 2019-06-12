@@ -44,17 +44,16 @@ class ReportsController extends Controller
 
     public function advanced(){
         $corp =DB::table('corporates')->get();
-
-        return view('adm.reports.advanced')->with('corp', $corp);
+        $data='EMPTY';
+        return view('adm.reports.advanced')->with('data', $data)->with('corp', $corp);
     }
-    public function search($corp, $status, $datetype, $d){
-        $d =str_replace('!', '/', $d);
-        $where=' where ';
-        if($corp !='null') {
-            $where.= ' B.cust_id='.$corp.' AND ';
-        }
-        
-       
+    public function search(Request $request){
+        $corp =DB::table('corporates')->get();
+        $corp1 = $request->input('corp');
+        $d = $request->input('dates');
+        $status = $request->input('status');
+        $datetype = $request->input('datetype');
+        $where=' where B.cust_id='.$corp1. ' AND ';
         if($d !=0){
             $dates =explode(' - ', $d);
             
@@ -79,13 +78,19 @@ class ReportsController extends Controller
         }
         $where = substr($where, 0, -4);
 
-       
-        $data = DB::select(' SELECT corporates.name as CP_NAME, count(B.id) as P_COUNT
+        DB::enableQueryLog();
+        $data = DB::select(' SELECT corporates.name as CP_NAME, month(B.'.$datetype.') as MNTH, count(B.id) as P_COUNT
         FROM ( select client_name, phone, draft_no, status, max(created_at) as created_at 
         from policies group by client_name, phone, draft_no ) A INNER JOIN policies B 
         USING (client_name, phone, draft_no,created_at) 
-        INNER JOIN corporates ON B.cust_id =corporates.id '.$where.' group by CP_NAME');
+        INNER JOIN corporates ON B.cust_id =corporates.id '.$where.' group by month(B.'.$datetype.')');
+        //dd(DB::getQueryLog());
 
-        return json_encode($data);
+        if(empty($data)){
+            $data="EMPTY";
+        }
+        else {
+            return view('adm.reports.advanced')->with('data', $data)->with('corp', $corp);
+        }
     }
 }

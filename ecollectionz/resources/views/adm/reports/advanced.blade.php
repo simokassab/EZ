@@ -38,16 +38,16 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                            {!! Form::open(['id'=>'advanced', 'method'=>'get']) !!}
+                            <form id="advanced" action="./getsearch" method="post">
                                     {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col col-sm-6" style="border-right: 1px solid #012F5C;">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="dateype" name="dateype" value="due_date" checked="checked" >
+                                            <input class="form-check-input" type="radio" id="dateype" name="datetype" value="due_date" checked="checked" >
                                             <label class="form-check-label" for="due">Due Date</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" id="dateype1" name="dateype" value="bord_date">
+                                            <input class="form-check-input" type="radio" id="dateype1" name="datetype" value="bord_date">
                                             <label class="form-check-label" for="dateype1">bord Date</label>
                                         </div>
                                    <br> <hr>
@@ -81,8 +81,8 @@
                                     <div class="col col-sm-3">
                                         <div class="form-group">
                                         <label>Select Corporate</label>
-                                        <select id=corp class="form-control select2" style="width: 100%;" name="corporates">
-                                            <option value="null">Select Corporate</option>
+                                        <select id='corp' class="form-control select2" style="width: 100%;" name="corp" required>
+                                            <option value="">Select Corporate</option>
                                             @foreach($corp as $c)
                                                 <option value="{{$c->id}}">{{$c->name}}</option>
                                             @endforeach
@@ -95,96 +95,84 @@
                                         <button type="submit" class="btn btn-warning" style="width: 100%;">Search !</button>
                                     </div>
                                 </div>
-                                {!! Form::close() !!}
+                            </form>
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-                    <div id='chart1'></div>
                 </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col col-sm-12" id='chart1' style="width: 100% !important;"></div>
+                        <script>
+                            @if($data!='EMPTY')
+                            Highcharts.chart('chart1', {
+                                chart: {
+                                    type: 'spline'
+                                },
+                                title: {
+                                    text: ''
+                                },
+
+                                subtitle: {
+                                    text: ''
+                                },
+
+                                yAxis: {
+                                    title: {
+                                        text: 'Number of policies'
+                                    }
+                                },
+                                xAxis: {
+                                    categories: [
+                                        @foreach($data as $d)
+                                            '{{$d->MNTH}}',
+                                        @endforeach
+                                    ]
+                                },
+                                plotOptions: {
+                                    series: {
+                                        fillOpacity: 0.1,
+                                    },
+                                    column: {
+                                        colorByPoint: true
+                                    }
+                                },
+                                colors: [
+                                    '#77A033',
+                                    '#C0504E',
+                                    '#0881BD'
+                                ],
+                                series: [{
+                                    name: '{{$data[0]->CP_NAME}}',
+                                    data: [
+                                        @foreach ($data as $v)
+                                        {{$v->P_COUNT}},
+                                        @endforeach
+                                    ]
+                                }],
+                                responsive: {
+                                    rules: [{
+                                        condition: {
+                                            maxWidth: 980,
+                                            maxHeight: 440
+                                        },
+                                        chartOptions: {
+                                            legend: {
+                                                layout: 'horizontal',
+                                                align: 'center',
+                                                verticalAlign: 'bottom'
+                                            }
+                                        }
+                                    }]
+                                }
+                            });
+                            @endif
+                        </script>
+                    </div>
             </div>
-                <!-- /.container-fluid -->
+            <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
     </div>
-
 @endsection
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-
-
-<script>
-$(document).ready( function() {
-    $('#advanced').submit(function(event){
-      event.preventDefault();
-      var corp = $('#corp').val();
-      var status = $('#status').val();
-
-      var datetype =$('input[name=dateype]:checked', '#advanced').val();
-      var dates =$('#dates').val();
-      dates= dates.replace(/\//g, "!");
-      var formData = new FormData;
-      formData.append('corp', corp);
-      formData.append('status', status);
-      formData.append('datetype', datetype);
-      formData.append('dates', dates);
-
-      //alert(datetype);
-      $.ajax({
-        url: './'+corp+'/'+status+'/'+datetype+'/'+dates+'/getsearch',
-        type: 'get',
-        success: function (data1) {
-            console.log(data1);
-            var json = $.parseJSON(data1);
-            var categ = '';
-            var series1 = '';
-            //for (var i=0;i<json.length;++i) {
-                categ+="'"+json[0].DD+"',"
-                series1+="{name: '"+json[0].CP_NAME+"',";
-                series1+="data: ["+json[0].P_COUNT+"]},";
-           // }
-            series1=series1.slice(0,-1);
-            categ= categ.slice(0,-1)
-            //categ+=']';
-            console.log(categ);
-            console.log(series1);
-            var d = new Date();
-            var n = d.getMonth();
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-            ];
-            Highcharts.chart('chart1', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: ''
-            },
-
-            xAxis: {
-                categories: [
-                    'JUNE'
-                ],
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'values'
-                }
-            },
-
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
-            series: [{name: 'E-LOAN',data: [590]}, {name: 'Money  SAL',data: [8298]}]
-        });
-        }
-
-    });
-    });
-});
-</script>

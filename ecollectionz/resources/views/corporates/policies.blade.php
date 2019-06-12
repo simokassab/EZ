@@ -61,7 +61,8 @@
                                                 $comments =Auth()->user()->id."_".$draft."_".$p->phone;
                                             ?>
                                             <td>
-                                            <a target='_blank' title='History' href='../{{$histo}}/history' class='btn btn-danger'>
+
+                                            <a target='_blank' title='History' href='../../{{$histo}}/history' class='btn btn-danger'>
                                             <i class='fas fa-history'></i></a>
                                             </td>
                                             <td>{{$p->client_no}}</td>
@@ -82,7 +83,7 @@
                                             <td>{{$p->amount}}</td>
                                             <td>{{$p->RK}}</td>
                                             <td><a 
-                                            href="../{{$comments}}/comments" 
+                                            href="../../{{$comments}}/comments"
                                             class="btn btn-warning">Comments</a> </td>
                                         </tr>
                                     @endforeach

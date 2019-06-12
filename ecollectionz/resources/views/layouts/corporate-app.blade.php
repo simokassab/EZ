@@ -257,6 +257,12 @@
                 </a>
             </li>
             <li  class='nav-item' >
+                <a href="{{ URL::route('corporates.brokers') }}" class='nav-link'>
+                    <i class="nav-icon fas fa-user-alt"></i>
+                    <p>Brokers</p>
+                </a>
+            </li>
+            <li  class='nav-item' >
                 <a href="{{ URL::route('corporate.searchpolicies') }}" class='nav-link'>
                     <i class="nav-icon fas fa-file-alt"></i>
                     <p>Search</p>

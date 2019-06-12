@@ -32,7 +32,7 @@
         <!-- Small boxes (Stat box) -->
         <a class="btn btn-lg btn-success" style="float: right; color:white" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> Add New</a><br/><br/><br/>
       <div class="row">
-        @foreach ($corp as $a)
+        @foreach ($corp1 as $a)
         <?php 
             $photo = $a->photo;
         ?>
@@ -97,16 +97,16 @@
             <div class="card-body">
               <table id="corporates_table" class="table table-bordered table-hover" style="width: 100%;">
                 <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                  <th>Address</th>
-                    <th>Pay Online</th>
-                    <th>GPA</th>
-                  <th>Active</th>
-                  <th>Control</th>
-                </tr>
+                    <tr>
+                        <th>Action</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Pay Online</th>
+                        <th>GPA</th>
+                        <th>Active</th>
+                        <th>Control</th>
+                    </tr>
                 </thead>
                 <tbody>
                   @foreach ($corp as $a)
@@ -115,11 +115,20 @@
                   @else
                       <tr style="background-color: #EBA1A4;">
                   @endif
-                   
+                      <td>
+                          <a href="{{route ('admin.corporate.getbrokers' , $a->id)}}" class="btn btn-danger" title='Brokers'>
+                              <i class="fa fa-user"></i>
+                          </a>
+                          <a href="{{route ('admin.corporate.getclients' , $a->id)}}" class="btn btn-info" title='Clients'>
+                              <i class="fa fa-address-card"></i>
+                          </a>
+                          <a href="{{route ('admin.corporate.getpolicies' , $a->id)}}" class="btn btn-primary" title='Policies'>
+                              <i class="fa fa-bars"></i>
+                          </a>
+                      </td>
                       <td>{{$a->name}}</td>
                       <td>{{$a->email}}</td>
                       <td>{{$a->phone}}</td>
-                      <td>{{$a->address}}</td>
                       @if ($a->pay_online ==1) 
                           <td style="text-align: center !important;"><strong  class="text-success" >YES</strong></td>                          
                       @else
@@ -140,12 +149,11 @@
                         @if ($a->active==1)
                             <a href="{{ route('admin.corporate.delete', $a->id) }}" class="btn btn-danger" title='Desactivate'>
                               <i class='fas fa-trash'></i></a>
-                        
                         @else
                             <a href="{{ route('admin.corporate.activate', $a->id) }}" class="btn btn-success" title='Activate'>
                               <i class='fas fa-check-square'></i></a>
                         @endif
-                        <a href="./edit/{{$a->id}}" class="btn btn-info" title='Report'><i class="fa fa-chart-line"></i></a>
+
                       </td>
                     </tr> 
                   @endforeach

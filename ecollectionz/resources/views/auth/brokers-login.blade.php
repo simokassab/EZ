@@ -55,7 +55,7 @@
 				<div class="d-flex justify-content-center">
 					<a style="color: white" href="{{ route('broker.password.request') }}">Forgot your password?</a>
 				</div>
-                <a class="btn btn-danger btn-block btn-flat" href='./register' >Sign UP</a>
+
       </div>
       <br/>
      

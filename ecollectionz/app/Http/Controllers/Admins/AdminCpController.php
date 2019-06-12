@@ -24,7 +24,8 @@ class AdminCpController extends Controller
     public function index()
     {
         $corp = DB::table('corporates')->get();
-        return view('adm.corporates.corporate')->with('corp', $corp);
+        $corp1 = DB::table('corporates')->orderBy('created_at', 'DESC')->take(3)->get();
+        return view('adm.corporates.corporate')->with('corp', $corp)->with('corp1', $corp1);
     }
 
     /**

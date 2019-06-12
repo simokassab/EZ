@@ -7,12 +7,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Dashboard Corporate</h1>
+                        <h1 class="m-0 text-dark">My Brokers</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">brokers</li>
                         </ol>
 
                     </div><!-- /.col -->
@@ -27,7 +27,7 @@
                 <div class="container-fluid">
                     <div class="card card-danger" style="border: 2px solid #012F5C;">
                         <div class="card-header">
-                            <h3 class="card-title" style="color: white">My Clients</h3>
+                            <h3 class="card-title" style="color: white">My brokers</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -37,36 +37,21 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
-                                        @if($gpa[0]->gpa==1)
-                                            <th>GPA</th>
-                                        @endif
-
-                                        <th>Registred</th>
+                                        <th>Address</th>
                                         <th>Control</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($clients as $c)
+                                    @foreach($brokers as $c)
                                         <tr>
-                                            <td>{{$c->CNAME}}</td>
-                                            <td>{{$c->EMAILS}}</td>
-                                            <td>{{$c->PPHONE}}</td>
-                                            @if($gpa[0]->gpa==1)
-                                                @if($c->GPAA < 70)
-                                                    <td class="text-danger"><b>{{$c->GPAA}} %</b></td>
-                                                @else
-                                                    <td class="text-success"><b>{{$c->GPAA}} %</b></td>
-                                                @endif
-                                            @endif
-
-                                            @if($c->EMAILS !='')
-                                                <td class="text-success"><i>Registred</i></td>
-                                            @else
-                                                <td class="text-danger"><i>Not Registred</i></td>
-                                            @endif
+                                            <td>{{$c->name}}</td>
+                                            <td>{{$c->email}}</td>
+                                            <td>{{$c->phone}}</td>
+                                            <td>{{$c->address}}</td>
                                             <td style="width: 15% !important;">
                                                 <div class="button_cont" align="center">
-                                                    <a class="example_e" href="./{{$c->PPHONE}}/CL/policies" rel="nofollow noopener">
+
+                                                    <a class="example_e" href="./{{$c->bk_id}}/BK/policies" rel="nofollow noopener">
                                                         Policies
                                                     </a>
                                                 </div>
