@@ -29,9 +29,9 @@
                             </div>
 
                         </div>
-                        <div class="col col-md-4 col-sm-6" style='margin-left:25% !important'>
-                            <br><br> <br><br> <br><br> <br><br>
-                           <img src="assets/images/footer-logo.png" alt class="header-logo">
+                        <div class="col col-sm-7" style="text-align:right;">
+                            <br><br> <br><br> <br><br>
+                            <img src="assets/images/logo for web correction-06.png">
 
                         </div>
 

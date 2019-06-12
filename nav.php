@@ -1,3 +1,19 @@
+<style>
+    .dropdown-menu >li :hover {
+        color: #F4D410 !important;
+        background-color: #012f5c!important;
+    }
+
+    .navbar-nav >li: hover {
+        color: #F4D410 !important;
+        background-color: #012f5c!important;
+    }
+
+    .open   {
+        color: #F4D410 !important;
+        background-color: #012f5c!important;
+    }
+</style>
 <header id="header" class="site-header header-style-1">
 
     <nav class="navigation navbar navbar-default">
@@ -45,20 +61,20 @@
 
                     <li><a href="contact.php">Contact</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sign In
+                        <a class="dropdown-toggle" data-toggle="dropdown"  aria-haspopup="true" href="#">Sign In
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu" style="width: 100%; background-color: #012f5c; ">
-                            <li style="font-size: larger; text-align: center; border-bottom: 1px solid #012f5c;">
-                                <a style="color: #fdd415;" href="./ecollectionz/public">- As a Client</a></li>
-                            <li style="font-size: larger; text-align: center; border-bottom: 1px solid #012f5c;">
-                                <a style="color: #fdd415;" href="./ecollectionz/public/corporate">- As a Corporate</a></li>
-                            <li style="font-size: larger; text-align: center; border-bottom: 1px solid #012f5c;">
-                                <a style="color: #fdd415;" href="./ecollectionz/public/brokers">- As a Broker</a></li>
+                            <li >
+                                <a style="color: #FEFEFE;" href="./ecollectionz/public">As a Client</a></li>
+                            <li >
+                                <a style="color: #FEFEFE;" href="./ecollectionz/public/corporate">As a Corporate</a></li>
+                            <li >
+                                <a style="color: #FEFEFE;" href="./ecollectionz/public/brokers">As a Broker</a></li>
 
                         </ul>
                     </li>
-                    <li style='margin:0 0 0 20px; '><a title='العربية' style='border-left: 1px solid #fdd415;border-right: 1px solid #fdd415;' href="./AR/">AR</a></li>
-                    <li><a title='English' style='border-right: 1px solid #fdd415;' href="./">EN</a></li>
+                    <li style='margin:0 0 0 20px; '><a title='العربية'  href="./AR/">AR</a></li>
+                    <li><a title='English'  href="./">EN</a></li>
 
                 </ul>
 

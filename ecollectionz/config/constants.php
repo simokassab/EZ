@@ -1,4 +1,4 @@
 <?php
 
 
-define('URL_', 'http://localhost/ecollectionz/ecollectionz/public/');
+define('URL_', 'http://localhost:8008/ecollectionz/ecollectionz/public/');
